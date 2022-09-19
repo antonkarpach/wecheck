@@ -3,32 +3,18 @@ import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Button from "../Button/Button";
 import Alert from "../Alert/Alert";
 import { filterImages } from "../../utils/FilterImages";
+import { mockFetch } from "../../utils/mockFetch";
 
 const Filters = () => {
   const [currentItemId, setCurrentItemId] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  function getRandomArbitrary(min: number, max: number) {
-    return Math.random() * (max - min) + min;
-  }
-
-  function delay(id: number) {
-    return new Promise((res, rej) => setTimeout(id ? res : rej, getRandomArbitrary(12000, 30000), id));
-  }
-
-  function mockFetch(id: number) {
-    return delay(id);
-  }
-
-  const handleCurrentItemId = useCallback(
-    async (id: number) => {
-      setLoading(true);
-      const result = await mockFetch(id);
-      setCurrentItemId(result as number);
-      setLoading(false);
-    },
-    [mockFetch]
-  );
+  const handleCurrentItemId = useCallback(async (id: number) => {
+    setLoading(true);
+    const result = await mockFetch(id);
+    setCurrentItemId(result as number);
+    setLoading(false);
+  }, []);
   return (
     <>
       <div className="flex items-center flex-wrap bg-gray-200 min-h-16 py-6 px-4 child:ml-4 lg:child:mb-0 child:mb-3">

@@ -34,8 +34,12 @@ const Alert: React.FC<AlertProps> = ({ loading }) => {
   useEffect(() => {
     if (loading) {
       getRandomHint();
-      setInterval(() => getRandomHint(), 6000);
     }
+    const interval = window.setInterval(() => getRandomHint(), 6000);
+    if (!loading) {
+      window.clearInterval(interval);
+    }
+    return () => window.clearInterval(interval);
   }, [getRandomHint, loading]);
 
   useEffect(() => {
@@ -54,7 +58,7 @@ const Alert: React.FC<AlertProps> = ({ loading }) => {
     <div className="fixed top-0 left-0 z-50 w-full h-full">
       <div
         id="toast-success"
-        className="flex flex-col p-6 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed top-2/3 left-1/2 -translate-x-1/2"
+        className="flex flex-col p-6 mb-4 w-full max-w-sm text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed top-2/3 left-1/2 -translate-x-1/2"
         role="alert"
       >
         <div className="flex items-center justify-between w-full border-b-2 mb-5">
