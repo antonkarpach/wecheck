@@ -62,7 +62,7 @@ const Alert: React.FC<AlertProps> = ({ loading }) => {
         role="alert"
       >
         <div className="flex items-center justify-between w-full border-b-2 mb-5">
-          <div className="flex text-sm pb-5 ">
+          <div className="flex justify-center items-center text-sm pb-5 ">
             <svg
               className="animate-spin h-5 w-5 mr-3"
               width="23"
@@ -77,7 +77,7 @@ const Alert: React.FC<AlertProps> = ({ loading }) => {
                 strokeWidth="3"
               />
             </svg>
-            Идет загрузка данных
+            <span className="text-xl text-green-600 font-medium">Идет загрузка данных</span>
           </div>
         </div>
 
